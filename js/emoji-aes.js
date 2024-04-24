@@ -32,7 +32,7 @@ function encrypt(){
 
       /* AES encrypt message with key, and convert to Base64 string. */
       var encrypted = CryptoJS.AES.encrypt(message.value, key.value).toString();
-
+        console.log(encrypted);
       /* Create new emoji setting array. */
       var emojis = [];
 
@@ -127,7 +127,7 @@ function encrypt(){
       emojified = emojified.replace(/\+/g, emojis[62]);
       emojified = emojified.replace(/\//g, emojis[63]);
       emojified = emojified.replace(/=/g, emojis[64]);
-
+      console.log(emojified);
       /* Define encryption button. */
       var button = document.getElementById("encrypt-button");
 
@@ -204,7 +204,7 @@ function decrypt(){
       else{
         /* Simply copy initial emoji setting if rotation is not customised. */
         emojis = emojisInit;
-      }
+        }
 
       /* Substitute emojis with a - z Base64 characters. */
       var unemojified = message.value.replace(new RegExp(emojis[0], "g"), "a");
@@ -278,10 +278,10 @@ function decrypt(){
       unemojified = unemojified.replace(new RegExp(emojis[62], "g"), "+");
       unemojified = unemojified.replace(new RegExp(emojis[63], "g"), "/");
       unemojified = unemojified.replace(new RegExp(emojis[64], "g"), "=");
-
+        console.log(unemojified);
       /* Decrypt Base64 string. */
       var plaintext  = CryptoJS.AES.decrypt(unemojified, key.value).toString(CryptoJS.enc.Utf8);
-
+        console.log(plaintext);
       /* Verify that decryption was successful. */
       if(plaintext != ""){
         /* Define decryption button. */
